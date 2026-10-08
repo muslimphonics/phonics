@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letter S — A Mysterious Sound</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:25px;font-family:Arial,sans-serif;background:#7ec8ff;color:#173f7a}
+.wrap{max-width:820px;margin:auto}
+.header{text-align:center;color:#fff;margin-bottom:24px}
+.header .set{font-size:18px;font-weight:bold;opacity:.9}
+.header h1{font-size:40px;margin:6px 0 4px}
+.header .sub{font-size:20px;font-weight:bold}
+.box{background:#fffdf8;border-radius:35px;padding:34px;margin-bottom:28px;box-shadow:0 10px 30px rgba(0,0,0,.12);text-align:center}
+.box h2{font-size:34px;margin:0 0 10px}
+.hint{font-size:20px;font-weight:600;color:#5c6f8f;line-height:1.6;margin-bottom:22px}
+.pic{width:min(320px,80%);height:auto;display:block;margin:0 auto 22px}
+audio{width:100%;max-width:520px}
+.btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:10px}
+.btn{border:none;background:#173f7a;color:#fff;font-size:24px;font-weight:bold;padding:16px 24px;border-radius:20px;cursor:pointer;text-decoration:none;display:inline-block;transition:.2s;font-family:Arial,sans-serif}
+.btn:hover{background:#21539c;transform:scale(1.04)}
+.btn.green{background:#38b94a}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.status{display:none;margin:20px 0 0;font-size:28px;font-weight:bold;color:#ff3b3b;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.note{font-size:17px;color:#5c6f8f;margin-top:18px;line-height:1.5}
+.footer{text-align:center;color:#fff;font-size:15px;margin:10px 0 30px}
+@media(max-width:700px){
+ body{padding:10px}.box{padding:20px 14px;border-radius:24px}
+ .header h1{font-size:28px}.box h2{font-size:24px}.hint{font-size:17px}
+ .btn{font-size:18px;padding:14px 16px;width:100%}
+}
+</style>
+</head>
+<body translate="no" class="notranslate">
+<div class="wrap">
+
+  <div class="header">
+    <div class="set">MuslimPhonics · Set 1 · Letter S</div>
+    <h1>A Mysterious Sound</h1>
+    <div class="sub">Kids Story Number 1</div>
+  </div>
+
+  <!-- LISTENING TEST (book page 18) -->
+  <div class="box">
+    <h2>🎧 Listening Test</h2>
+    <div class="hint">Listen and colour the picture in your book.</div>
+    <audio controls preload="metadata" src="audio-s.mp3"></audio>
+  </div>
+
+  <!-- SPEAKING TEST (book page 19) -->
+  <div class="box">
+    <h2>🎤 Speaking Test</h2>
+    <div class="hint">Look at the picture. Describe what you see.<br>Record yourself and listen.</div>
+    <img class="pic" src="sun-snake.jpg" alt="The sun and a snake in the grass">
+    <div class="btns">
+      <button class="btn" id="recBtn" onclick="startRec()">🎙 Record</button>
+      <button class="btn" id="stopBtn" onclick="stopRec()" disabled>⏹ Stop</button>
+      <button class="btn" id="playBtn" onclick="playRec()" disabled>🔊 Listen</button>
+    </div>
+    <div class="status" id="status">🔴 Recording...</div>
+    <div class="btns" style="margin-top:22px">
+      <a class="btn green" id="saveBtn" style="display:none" download="my-recording-letter-s.webm">💾 Save my recording</a>
+    </div>
+    <div class="note" id="sendNote" style="display:none">Then send your recording to MuslimPhonics with the button below 👇</div>
+  </div>
+
+  <!-- SHARE (book page 25) -->
+  <div class="box">
+    <h2>📤 Let's Share</h2>
+    <div class="hint">Do you want to share your drawing or your recording with us?<br>Take a picture and send it to MuslimPhonics!</div>
+    <a class="btn green" id="sendBtn" target="_blank" rel="noopener">✉️ Send to MuslimPhonics</a>
+  </div>
+
+  <div class="footer">© MuslimPhonics — Reading made fun!</div>
+</div>
+
+<script>
+/* ===== The only line to change later (email today, WhatsApp tomorrow) =====
+   Email:    "mailto:muslimphonicsforkids@gmail.com?subject=Letter%20S%20-%20my%20work"
+   WhatsApp: "https://wa.me/33XXXXXXXXX"  (number with country code, no + and no spaces) */
+const SEND_LINK = "mailto:muslimphonicsforkids@gmail.com?subject=Letter%20S%20-%20my%20work";
+document.getElementById("sendBtn").href = SEND_LINK;
+
+let rec, chunks = [], url = null;
+const $ = id => document.getElementById(id);
+async function startRec(){
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+    rec = new MediaRecorder(stream); chunks = [];
+    rec.ondataavailable = e => chunks.push(e.data);
+    rec.onstop = () => {
+      const blob = new Blob(chunks, {type: rec.mimeType || "audio/webm"});
+      if(url) URL.revokeObjectURL(url);
+      url = URL.createObjectURL(blob);
+      const ext = (rec.mimeType || "").includes("mp4") ? "m4a" : "webm";
+      $("saveBtn").href = url; $("saveBtn").download = "my-recording-letter-s." + ext;
+      $("saveBtn").style.display = "inline-block"; $("sendNote").style.display = "block";
+      $("playBtn").disabled = false;
+      stream.getTracks().forEach(t => t.stop());
+    };
+    rec.start();
+    $("status").style.display = "block"; $("recBtn").disabled = true; $("stopBtn").disabled = false;
+  }catch(e){ alert("Microphone not available."); }
+}
+function stopRec(){
+  if(rec && rec.state !== "inactive") rec.stop();
+  $("status").style.display = "none"; $("recBtn").disabled = false; $("stopBtn").disabled = true;
+}
+function playRec(){ if(url) new Audio(url).play(); }
+</script>
+</body>
+</html>
