@@ -26,6 +26,10 @@ audio{width:100%;max-width:520px}
 .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
 .status{display:none;margin:20px 0 0;font-size:28px;font-weight:bold;color:#ff3b3b;animation:pulse 1s infinite}
 @keyframes pulse{50%{transform:scale(1.08)}}
+.tr{margin:-8px 0 20px}
+.trbtn{border:2px solid #173f7a;background:#fff;color:#173f7a;font-size:17px;font-weight:bold;padding:8px 16px;border-radius:999px;cursor:pointer;margin:4px;font-family:Arial,sans-serif}
+.trbtn.on{background:#173f7a;color:#fff}
+.trtext{display:none;background:#fff6cc;border-radius:18px;padding:12px 16px;margin:10px auto 0;max-width:560px;font-size:19px;line-height:1.5;color:#173f7a}
 .note{font-size:17px;color:#5c6f8f;margin-top:18px;line-height:1.5}
 .footer{text-align:center;color:#fff;font-size:15px;margin:10px 0 30px}
 @media(max-width:700px){
@@ -49,6 +53,7 @@ audio{width:100%;max-width:520px}
     <div class="page">📖 Page 18</div>
     <h2>🎧 Listening Test</h2>
     <div class="hint">Listen and colour the picture in your book.</div>
+    <div class="tr" data-tr="listen"></div>
     <audio controls preload="metadata" src="audio-s.mp3"></audio>
   </div>
 
@@ -57,6 +62,7 @@ audio{width:100%;max-width:520px}
     <div class="page">📖 Page 19</div>
     <h2>🎤 Speaking Test</h2>
     <div class="hint">Look at the picture. Describe what you see.<br>Record yourself and listen.</div>
+    <div class="tr" data-tr="speak"></div>
     <img class="pic" src="sun-snake.jpg" alt="The sun and a snake in the grass">
     <div class="btns">
       <button class="btn" id="recBtn" onclick="startRec()">🎙 Record</button>
@@ -69,7 +75,7 @@ audio{width:100%;max-width:520px}
     </div>
     <div class="note" id="sendNote" style="display:none">Then send your recording to MuslimPhonics with the button below 👇</div>
     <div class="btns" style="margin-top:26px">
-      <button class="btn" id="modelBtn" onclick="showModel()">🎬 Model answer</button>
+      <button class="btn" id="modelBtn" onclick="showModel()">📹 Model answer</button>
     </div>
     <div id="modelBox" style="display:none;margin-top:20px">
       <video id="modelVideo" src="model-answer.mp4" controls playsinline preload="none" style="width:100%;border-radius:20px"></video>
@@ -81,6 +87,7 @@ audio{width:100%;max-width:520px}
     <div class="page">📖 Page 25</div>
     <h2>📤 Let's Share</h2>
     <div class="hint">Do you want to share your drawing or your recording with us?<br>Take a picture and send it to MuslimPhonics!</div>
+    <div class="tr" data-tr="share"></div>
     <a class="btn green" id="sendBtn" target="_blank" rel="noopener">✉️ Send to MuslimPhonics</a>
   </div>
 
@@ -93,6 +100,33 @@ audio{width:100%;max-width:520px}
    WhatsApp: "https://wa.me/33XXXXXXXXX"  (number with country code, no + and no spaces) */
 const SEND_LINK = "mailto:muslimphonicsforkids@gmail.com?subject=Letter%20S%20-%20my%20work";
 document.getElementById("sendBtn").href = SEND_LINK;
+
+/* ===== Instructions in other languages (💡 buttons) =====
+   To add a language: add it to LANGS, then a line for it in each entry of TR. */
+const LANGS = [ { code: "fr", label: "Français" } ];
+const TR = {
+  listen: { fr: "Écoute et colorie l'image dans ton livre." },
+  speak:  { fr: "Regarde l'image. Dis ce que tu vois.<br>Enregistre-toi, puis écoute-toi.<br>Tu peux regarder la vidéo de correction (📹 Model answer) avant ou après." },
+  share:  { fr: "Tu veux nous montrer ton dessin ou ton enregistrement ?<br>Prends une photo et envoie-la à MuslimPhonics !" }
+};
+document.querySelectorAll(".tr").forEach(box => {
+  const key = box.dataset.tr, text = document.createElement("div");
+  text.className = "trtext";
+  LANGS.forEach(l => {
+    if (!TR[key][l.code]) return;
+    const b = document.createElement("button");
+    b.className = "trbtn"; b.textContent = "💡 " + l.label;
+    b.onclick = () => {
+      const open = b.classList.contains("on");
+      box.querySelectorAll(".trbtn").forEach(x => x.classList.remove("on"));
+      if (open) { text.style.display = "none"; return; }
+      b.classList.add("on"); text.innerHTML = TR[key][l.code];
+      text.dir = l.rtl ? "rtl" : "ltr"; text.style.display = "block";
+    };
+    box.appendChild(b);
+  });
+  box.appendChild(text);
+});
 
 let rec, chunks = [], url = null;
 const $ = id => document.getElementById(id);
@@ -122,7 +156,7 @@ function stopRec(){
 function showModel(){
   const box=$("modelBox"), v=$("modelVideo");
   if(box.style.display==="none"){ box.style.display="block"; $("modelBtn").textContent="✖️ Hide the answer"; v.play().catch(()=>{}); }
-  else { box.style.display="none"; v.pause(); $("modelBtn").textContent="🎬 Model answer"; }
+  else { box.style.display="none"; v.pause(); $("modelBtn").textContent="📹 Model answer"; }
 }
 function playRec(){ if(url) new Audio(url).play(); }
 </script>
