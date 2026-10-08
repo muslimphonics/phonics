@@ -68,6 +68,12 @@ audio{width:100%;max-width:520px}
       <a class="btn green" id="saveBtn" style="display:none" download="my-recording-letter-s.webm">💾 Save my recording</a>
     </div>
     <div class="note" id="sendNote" style="display:none">Then send your recording to MuslimPhonics with the button below 👇</div>
+    <div class="btns" style="margin-top:26px">
+      <button class="btn" id="modelBtn" onclick="showModel()">👀 Model answer</button>
+    </div>
+    <div id="modelBox" style="display:none;margin-top:20px">
+      <video id="modelVideo" src="model-answer.mp4" controls playsinline preload="none" style="width:100%;border-radius:20px"></video>
+    </div>
   </div>
 
   <!-- SHARE (book page 25) -->
@@ -112,6 +118,11 @@ async function startRec(){
 function stopRec(){
   if(rec && rec.state !== "inactive") rec.stop();
   $("status").style.display = "none"; $("recBtn").disabled = false; $("stopBtn").disabled = true;
+}
+function showModel(){
+  const box=$("modelBox"), v=$("modelVideo");
+  if(box.style.display==="none"){ box.style.display="block"; $("modelBtn").textContent="🙈 Hide the answer"; v.play().catch(()=>{}); }
+  else { box.style.display="none"; v.pause(); $("modelBtn").textContent="👀 Model answer"; }
 }
 function playRec(){ if(url) new Audio(url).play(); }
 </script>
