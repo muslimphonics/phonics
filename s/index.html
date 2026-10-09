@@ -31,6 +31,9 @@ audio{width:100%;max-width:520px}
 .trbtn.on{background:#173f7a;color:#fff}
 .trtext{display:none;background:#fff6cc;border-radius:18px;padding:12px 16px;margin:10px auto 0;max-width:560px;font-size:19px;line-height:1.5;color:#173f7a}
 .note{font-size:17px;color:#5c6f8f;margin-top:18px;line-height:1.5}
+.consent{background:#eef7ff;border:2px dashed #7ec8ff;border-radius:18px;padding:12px 16px;margin:0 auto 20px;max-width:560px;font-size:16px;line-height:1.5;color:#173f7a}
+.consent p{margin:6px 0}
+.consent [dir=rtl]{font-size:19px}
 .footer{text-align:center;color:#fff;font-size:15px;margin:10px 0 30px}
 @media(max-width:700px){
  body{padding:10px}.box{padding:20px 14px;border-radius:24px}
@@ -88,7 +91,15 @@ audio{width:100%;max-width:520px}
     <h2>📤 Let's Share</h2>
     <div class="hint">Do you want to share your drawing or your recording with us?<br>Take a picture and send it to MuslimPhonics!</div>
     <div class="tr" data-tr="share"></div>
+    <div class="consent">
+      <p>Your drawing may be shared in our online gallery (first name and age only). Delete the agreement line in the email if you do not agree.</p>
+      <p lang="fr">Votre dessin pourra être publié dans notre galerie en ligne (prénom et âge uniquement). Supprimez la ligne d'accord dans l'e-mail si vous ne souhaitez pas qu'il soit publié.</p>
+      <p lang="ar" dir="rtl">قد يتم نشر رسمك في معرضنا على الإنترنت (الاسم الأول والعمر فقط). احذف سطر الموافقة من البريد إذا كنت لا توافق.</p>
+    </div>
     <a class="btn green" id="sendBtn" target="_blank" rel="noopener">✉️ Send to MuslimPhonics</a>
+    <div class="btns" style="margin-top:16px">
+      <a class="btn" href="https://ko-fi.com/album/-Our-Little-MuslimPhonics-Family-V4N828FHNH" target="_blank" rel="noopener">See the gallery / Voir la galerie / <span dir="rtl">شاهد المعرض</span></a>
+    </div>
   </div>
 
   <div class="footer">© MuslimPhonics — Reading made fun!</div>
@@ -98,7 +109,11 @@ audio{width:100%;max-width:520px}
 /* ===== The only line to change later (email today, WhatsApp tomorrow) =====
    Email:    "mailto:muslimphonicsforkids@gmail.com?subject=Letter%20S%20-%20my%20work"
    WhatsApp: "https://wa.me/33XXXXXXXXX"  (number with country code, no + and no spaces) */
-const SEND_LINK = "mailto:muslimphonicsforkids@gmail.com?subject=Letter%20S%20-%20my%20work";
+const SEND_SUBJECT = "My MuslimPhonics drawing";
+const SEND_BODY = "Child's first name:\r\nAge:\r\n\r\n"
+  + "I agree that this drawing may be shared (first name and age only) in the Our Little MuslimPhonics Family gallery on Ko-fi.\r\n"
+  + "(Delete this line if you do not agree.)";
+const SEND_LINK = "mailto:muslimphonicsforkids@gmail.com?subject=" + encodeURIComponent(SEND_SUBJECT) + "&body=" + encodeURIComponent(SEND_BODY);
 document.getElementById("sendBtn").href = SEND_LINK;
 
 /* ===== Instructions in other languages (💡 buttons) =====
