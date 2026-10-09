@@ -202,6 +202,11 @@ h1{font-family:var(--brand);font-weight:700;font-size:30px;margin:0 0 4px;text-w
 .sent .spk{font-size:.7em;margin-left:6px;vertical-align:middle}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
 @media (prefers-reduced-motion: reduce){.sent b,.slots.bad{animation:none}}
+/* 💡 help for parents */
+.bulb{border:none;background:#fff3c4;border-radius:999px;font-size:18px;width:36px;height:36px;cursor:pointer;flex:none;box-shadow:0 2px 0 #e6c84f;vertical-align:middle}
+.bulb[aria-pressed="true"]{background:#ffd84d}
+.trbox{background:#fff8dc;border:2px dashed #e6c84f;border-radius:14px;padding:8px 12px;margin:-6px auto 12px;max-width:560px;font-size:15px;color:var(--ink);text-align:center}
+.trbox .ar{font-size:22px;line-height:1.8;margin-top:4px;font-family:"Amiri","Traditional Arabic",serif}
 </style>
 </head>
 <body translate="no" class="notranslate">
@@ -216,7 +221,7 @@ h1{font-family:var(--brand);font-weight:700;font-size:30px;margin:0 0 4px;text-w
   <section class="panel" id="pick">
     <h1>Your sounds</h1>
     <div class="row" style="justify-content:space-between;align-items:flex-start;margin-bottom:6px">
-      <p class="hint" style="flex:1;min-width:220px;margin:0">These are the sounds you have learnt. Words made only with these sounds will appear. To practise fewer sounds, tap an earlier one.</p>
+      <p class="hint" id="pickHint" style="flex:1;min-width:220px;margin:0">These are the sounds you have learnt. Words made only with these sounds will appear. To practise fewer sounds, tap an earlier one.</p>
       <div class="row" style="gap:8px"><button class="btn helpBtn" id="helpBtn">? Help</button><button class="btn clear" id="clearBtn">↺ All my sounds</button></div>
     </div>
     <div id="sets"></div>
@@ -350,6 +355,8 @@ const WORDS=RAW.split("\n").map(l=>{const [w,n,z,s]=l.split("|");
 
 const IMG={"sat": "data:image/webp;base64,UklGRpwFAABXRUJQVlA4IJAFAACwLACdASpoAcsAPnk8nUoko6Mho9JIgJAPCWlu4XVRET3vlf6cf3Hsz/sXnv1ZPVzi7vJ/aSIjeJ/yz/QflVwbYAPpp/r+OTSQTG/2h88v1D7CH66+kB6+v249nD9chN+28Pcq3vIdMEeQ7lW95DjZLbf8j9kTQKbow5XkOmCPIdyrekRfbI4ML2LiD/D3Kt7yHTBFrz4ZEyIKexxSnWsyq71W95DpgjyHcEAT///ZybGzzlHPTBHkO5VvTZLM8DDWc+2npRubwfohxYB6YI8h3Ktnbzhe1+YVnMXi80UAccLryPjl6KVjURrUoVeQ6YI8h3BKmnHQbtGXmI+DD7UfyGbcLSGCare8h0wRdwFyegiyG0io6wwTNsh3ITnUTxHfyx2YICPIdwBF0ShGNbO7gqyg4ILLS8AZdQCVre5VuVb3kOmBbtlkWDA9k/lMQwKvfWSZ/IdMEeQ7lW+ISAgI8h3Kt7yHTBHkO5VvRAAA/v+XxfKRgAcqkYU2PnKGzc7vu0tp7zHWBozSfLljuH7Cd9fi3KYeZOfmUY3bh0aHMBnzMU2y5zAXPrp1ZxrMiAB/m82QPx20ovQcrqTxnpSJPJoFGzs35KxHXue6AKOBbmt8Uu/FQY4I+v7gN/LiRAVu77Cf91ZyFon1f5F89VpdFABCnJqe5q7QEaGw2kkhgDyHAvN85jVtYOcRkKx7nfbzWBBazHoQsQaNC5IhwWPJVxZzhriJ+OdjCvxs0RQpqC2og+Ome1s3oXDzCkUESqeL0zVYAL57vCjPTla/LHkKE/dWIHvuKPE/xxaXBQg9be3UbFcS9W8CLgA6h3z2b9jHG4lg/6K9CZP0KnC6QVxm78hFuXJViPFdM/HPO9x+PfUMxnQN1aqr4l71v6y0Enro5vCmlnTG4JfTxCFDfFUYhsdFYHKXPZMgnyU9Vf9nMxKer+oBz8F2N8TYpEBIbb12dtzmpx6qoZrnaplF9QSW7Y6til8nirTY3dVbPnvp1LRtPkkgXBFgW16G4lrTYYqXfCU0Sy0nhtjmKHeM766YQrZ5/gB7edgO2vw6lQZuoPOHxfhKJAGrpj6A2Im6cEpP/UCqP7Me3w8KIgdkcPX5Q2Qic3VIRZv8+6bvfs+QPiU9MOwptmcizVR5/mKOw+TetqW19f9D7Gwy0Xy45Ge9oGsIbhHm6F+czBbPZi3lJmF4ghSYfZ5ggU0KsMzG3zrYm1vKrZohav69gd36z++HQTFAGBeTpyTTQUPSshqNGXi5pQwKjV+oRLBDNPhr8tNUtEacO2fMsSfyZzJCXTjft9VWSdLLMuxoK5vIGJBaEQ4XXVufC25+Cs+nmqmAMP1UMDraPm6GjfqmyXsCr4sOM6Z6CATwMCFB9i4JT9xxoYeuyj/Nrsa01nrgs+2Syk192f93KbAwYXkN+MVnXXctTtNAZUb4zRTcPSwyLxHgD576Qt603Lbnj0J0baWQwtM1KIeeK/2YoEpeiyZyTywqmNRQJ32OrZLBv+IVdh999hPtjmDNCyzSKP3csMyUwSK2IREOo2LPWqWkbMK9ngxbnEKgOJYoiVpDIebRSxBahh5oAglCJHVey0sO0z1UV1uKzv7S91mJzy+7sACeg14KC0/urMg+o3wDNa9DNyEwpkcyDv2AhH0cs2KpKx2PIfRQ/eRAF091G1Y/u3z/vgx7jIB+f0m7xjzfz1cI3uLPlYXJV9I0yCUOAPRVllThC2Yu2i5AIqZFF3fLjuxcHgGdA1kynwaMEr+s/ukWnb/W0GuE58zKYQBRpPhwW8Y1ju7Kp9YhacQQAszMTNeB5CZZ9FxVux06WdE/ORoAYcVBWp4Cug4Gme1JBgOD8v7eTfGt8esCkdaGJFzZKzIQTvCW18UkO6txix0sLmQgAAAAAA=="};
 const STORIES=[];
+const HINTS=[["These are the sounds you have learnt. Words made only with these sounds will appear. To practise fewer sounds, tap an earlier one.", "Voici les sons que tu as appris. Seuls les mots faits avec ces sons apparaissent. Pour t'entraîner avec moins de sons, touche un son plus ancien.", "هٰذِهِ هِيَ الْأَصْوَاتُ الَّتِي تَعَلَّمْتَهَا. تَظْهَرُ فَقَطِ الْكَلِمَاتُ الْمُكَوَّنَةُ مِنْ هٰذِهِ الْأَصْوَاتِ. لِلتَّدَرُّبِ عَلَى أَصْوَاتٍ أَقَلَّ، اِلْمِسْ صَوْتًا سَابِقًا."], ["Touch the first dot and say the sound.", "Touche le premier point et dis le son.", "اِلْمِسِ النُّقْطَةَ الْأُولَى وَقُلِ الصَّوْتَ."], ["Now the next sound!", "Maintenant, le son suivant !", "وَالْآنَ الصَّوْتُ التَّالِي!"], ["Slide the circle along the arrow and read the whole word!", "Fais glisser le rond le long de la flèche et lis le mot en entier !", "اِسْحَبِ الدَّائِرَةَ عَلَى السَّهْمِ وَاقْرَأِ الْكَلِمَةَ كَامِلَةً!"], ["Great! You read “{w}”.", "Bravo ! Tu as lu « {w} ».", "أَحْسَنْتَ! قَرَأْتَ «{w}»."], ["⭐ New tricky word! You can't sound it out. Tap it to hear it.", "⭐ Nouveau mot outil (tricky word) ! On ne peut pas le lire son par son. Touche-le pour l'entendre.", "⭐ كَلِمَةٌ خَاصَّةٌ جَدِيدَةٌ! لَا نَقْرَؤُهَا صَوْتًا صَوْتًا. اِلْمِسْهَا لِتَسْمَعَهَا."], ["Tricky word! You can't sound it out. Tap it to hear it.", "Mot outil (tricky word) ! On ne peut pas le lire son par son. Touche-le pour l'entendre.", "كَلِمَةٌ خَاصَّةٌ! لَا نَقْرَؤُهَا صَوْتًا صَوْتًا. اِلْمِسْهَا لِتَسْمَعَهَا."], ["It says “{w}”. Say it, then remember its funny shape!", "Il se lit « {w} ». Dis-le, puis retiens sa forme rigolote !", "تُقْرَأُ «{w}». قُلْهَا، ثُمَّ تَذَكَّرْ شَكْلَهَا الْمُضْحِكَ!"], ["Listen to the sound. Tap its letter!", "Écoute le son. Touche sa lettre !", "اِسْتَمِعْ إِلَى الصَّوْتِ. اِلْمِسْ حَرْفَهُ!"], ["Listen to the word. Tap its sounds to write it!", "Écoute le mot. Touche ses sons pour l'écrire !", "اِسْتَمِعْ إِلَى الْكَلِمَةِ. اِلْمِسْ أَصْوَاتَهَا لِتَكْتُبَهَا!"], ["Not quite. Listen again and try once more!", "Presque ! Écoute encore une fois et réessaie !", "لَيْسَ تَمَامًا. اِسْتَمِعْ مَرَّةً أُخْرَى وَحَاوِلْ مِنْ جَدِيدٍ!"], ["It is “{w}”. You will get it next time!", "C'est « {w} ». Tu y arriveras la prochaine fois !", "إِنَّهَا «{w}». سَتَنْجَحُ فِي الْمَرَّةِ الْقَادِمَةِ!"]];   /* [English, français, العربية] */
+const SHOW_AR=false;      /* passer à true quand la collègue a validé l'arabe */
 const SENT={"at": "Sam is at school.", "sat": "Pat sat on the mat."};   /* word → sentence to hear in context */
 const TRICKY=new Set(["a", "after", "all", "also", "always", "any", "are", "be", "because", "before", "by", "come", "could", "cover", "do", "does", "down", "eight", "every", "father", "four", "give", "go", "goes", "have", "he", "here", "his", "i", "is", "like", "little", "live", "love", "made", "many", "me", "more", "mother", "my", "no", "of", "old", "once", "one", "only", "other", "put", "right", "said", "saw", "she", "should", "so", "some", "the", "their", "there", "they", "to", "two", "upon", "want", "was", "we", "were", "what", "when", "where", "which", "who", "why", "would", "you", "your"]);
 const TW_LIST=[["a", 3], ["the", 3]];   /* [word, sound number when it is introduced] */
@@ -537,6 +544,23 @@ $("twWord").onclick=()=>{ const w=twQ[0]; if(!w) return; const el=$("twWord"); e
 $("twOk").onclick=()=>{ play("ok"); const w=twQ.shift(); twOkN++; twList.push(w); twNext(); };
 $("twAgain").onclick=()=>{ twAgainN++; const w=twQ.shift(); twRe.add(w); const pos=Math.min(twQ.length,2+Math.floor(Math.random()*3)); twQ.splice(pos,0,w); twNext(); };
 $("trickyBtn").onclick=startTricky;
+/* ---------- 💡 translations for parents ---------- */
+function trFind(t){ t=(t||"").trim();
+  for(const [en,fr,ar] of HINTS){ if(!en.includes("{w}")){ if(en===t) return [fr,ar]; continue; }
+    const [a,b]=en.split("{w}"); if(t.startsWith(a)&&t.endsWith(b)&&t.length>=a.length+b.length){ const w=t.slice(a.length,t.length-b.length); return [fr.replace("{w}",w),ar.replace("{w}",w)]; } }
+  return null; }
+let trOpen=false; const TRS=[];
+function addBulb(id){ const el=$(id); if(!el) return;
+  const box=document.createElement("div"); box.className="trbox"; box.hidden=true; box.setAttribute("translate","no");
+  const b=document.createElement("button"); b.className="bulb"; b.textContent="💡"; b.setAttribute("aria-label","Traduction pour les parents"); b.setAttribute("aria-pressed","false");
+  const holder=el.closest(".row")||el; holder.insertAdjacentElement("afterend",box);
+  (el.closest(".row")? el : el).insertAdjacentElement("afterend",b);
+  const upd=()=>{ const r=trFind(el.textContent); b.style.visibility=r?"visible":"hidden"; if(!r){ box.hidden=true; return; }
+    box.innerHTML=`<div lang="fr">🇫🇷 ${r[0]}</div>`+(SHOW_AR?`<div class="ar" lang="ar" dir="rtl">${r[1]}</div>`:"");
+    box.hidden=!trOpen; b.setAttribute("aria-pressed",String(trOpen)); };
+  b.onclick=()=>{ trOpen=!trOpen; TRS.forEach(f=>f()); };
+  new MutationObserver(upd).observe(el,{childList:true,characterData:true,subtree:true}); TRS.push(upd); upd(); }
+["pickHint","stepHint","twHint","dHint"].forEach(addBulb);
 function esc(s){ return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
 function showSent(w,id){ const s=SENT[w], el=$(id); if(!s){ el.hidden=true; return; }
   const re=new RegExp("\\b("+w+")\\b","i");
