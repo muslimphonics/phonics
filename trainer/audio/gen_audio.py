@@ -21,9 +21,11 @@ try:
 except Exception as e: print('(crédits restants non lisibles avec cette clé)')
 VID=os.environ.get('VOICE_ID')
 if not VID:
-    vs=json.loads(api('https://api.elevenlabs.io/v2/voices?page_size=100&search='+urllib.parse.quote('Daniel')))['voices']
-    vs=[v for v in vs if 'warm' in v['name'].lower()] or vs
-    if not vs: sys.exit("Voix 'Daniel' introuvable : donne VOICE_ID=... (ElevenLabs > Voices > ... > Copy voice ID)")
+    NAME=os.environ.get('VOICE_NAME','Beth')   # voix de Reading Book 1
+    vs=json.loads(api('https://api.elevenlabs.io/v2/voices?page_size=100&search='+urllib.parse.quote(NAME)))['voices']
+    vs=[v for v in vs if v['name'].lower().startswith(NAME.lower())] or vs
+    if not vs: sys.exit(f"Voix '{NAME}' introuvable : donne VOICE_ID=... (ElevenLabs > Voices > ... > Copy voice ID)")
+    if len(vs)>1: print('Plusieurs voix trouvées :',[v['name'] for v in vs],'→ je prends la première')
     VID=vs[0]['voice_id']; print('Voix :',vs[0]['name'],VID)
 jobs=[l.rstrip('\n').split('\t') for l in open('jobs.tsv',encoding='utf-8') if l.strip()]
 todo=[j for j in jobs if not os.path.exists(j[0])]
