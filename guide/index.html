@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parents' Guide — MuslimPhonics</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:25px;font-family:Arial,sans-serif;background:#7ec8ff;color:#173f7a;line-height:1.6}
+.wrap{max-width:860px;margin:auto}
+.langs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.langs button{border:none;background:#fffdf8;color:#173f7a;font-size:20px;font-weight:bold;padding:12px 22px;border-radius:18px;cursor:pointer;font-family:Arial,sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.langs button.on{background:#173f7a;color:#fff}
+.card{background:#fffdf8;border-radius:35px;padding:34px 38px;margin-bottom:24px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+h1{font-size:36px;margin:0 0 6px;text-align:center}
+.brand{text-align:center;font-weight:bold;color:#5c6f8f;margin-bottom:6px}
+.star{background:#fff4c2;border-radius:22px;padding:18px 22px;font-size:24px;font-weight:bold;text-align:center;margin:18px 0 0}
+h2{font-size:26px;margin:0 0 12px}
+p,li{font-size:18px}
+ul{padding-inline-start:22px;margin:0}
+li{margin-bottom:14px}
+.page{font-weight:bold;background:#eef4ff;border-radius:10px;padding:1px 8px;white-space:nowrap}
+.words{direction:ltr;unicode-bidi:isolate;display:block;background:#eef4ff;border-radius:16px;padding:12px 16px;margin:10px 0;font-weight:bold;font-size:19px;text-align:left}
+.gesture{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.gesture img{width:130px;height:auto;margin:0 auto}
+.gesture>div{flex:1;min-width:250px}
+table{border-collapse:collapse;width:100%;font-size:18px}
+td,th{border:2px solid #dfefff;padding:10px 12px}
+th{background:#173f7a;color:#fff}
+td.s{font-weight:bold;direction:ltr;text-align:left}
+a{color:#21539c;font-weight:bold}
+[data-lang]{display:none}
+html[data-l="en"] [data-lang="en"],html[data-l="fr"] [data-lang="fr"],html[data-l="ar"] [data-lang="ar"]{display:block}
+[data-lang="ar"]{direction:rtl;text-align:right}
+[data-lang="ar"] p{font-size:23px;line-height:2.1}
+[data-lang="ar"] h1{font-size:42px}
+[data-lang="ar"] h2{font-size:29px;line-height:1.8}
+[data-lang="ar"] .star{font-size:27px;line-height:2}
+[data-lang="ar"] .lead{font-size:23px}
+[data-lang="ar"] th{font-size:22px}
+[data-lang="ar"] .step .page{direction:ltr}
+.tk .l .hl-r{color:#e02424 !important}
+.tk .l .hl-g{color:#2e9c3e !important}
+.tk .l a{text-decoration:none}
+@media(max-width:700px){[data-lang="ar"] p{font-size:19px}[data-lang="ar"] h1{font-size:30px}[data-lang="ar"] h2{font-size:22px}[data-lang="ar"] .star{font-size:21px}[data-lang="ar"] .lead{font-size:19px}}
+[data-lang="ar"] h1{text-align:center}
+/* red tashkeel: red full text underneath, dark-blue letters on top */
+.tkw{position:relative;display:block}
+.tk .m,.tk .m *{color:#e02424 !important}
+.tk .m{display:block}
+.tk .l{position:absolute;inset:0;pointer-events:none;display:block;color:#173f7a}
+th.tk .l{color:#fff}
+.tk .l *{color:#173f7a !important;background:transparent !important;box-shadow:none !important}
+.tk .l a{color:#21539c !important}
+.tk .l .page{background:transparent !important}
+.lead{font-size:19px;text-align:center;margin:10px 0 0}
+.hl-r{color:#e02424;font-weight:bold}
+.hl-g{color:#2e9c3e;font-weight:bold}
+.good{background:#e9f8ec;border-radius:16px;padding:12px 16px;font-weight:bold;color:#2e7d32}
+.step{border-inline-start:8px solid #7ec8ff;background:#fff;border-radius:18px;padding:14px 18px;margin:14px 0;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.step p{margin:8px 0 0}
+.step .page{display:inline-block;color:#fff;padding:4px 14px;border-radius:12px;font-size:17px}
+.step .link{background:#eef4ff;border-radius:12px;padding:8px 12px}
+.c1{border-color:#4a90e2}.c1 .page{background:#4a90e2}
+.c2{border-color:#f5a623}.c2 .page{background:#f5a623}
+.c3{border-color:#9b59b6}.c3 .page{background:#9b59b6}
+.c4{border-color:#38b94a}.c4 .page{background:#38b94a}
+.c5{border-color:#e02424}.c5 .page{background:#e02424}
+.c6{border-color:#16a5a5}.c6 .page{background:#16a5a5}
+.c7{border-color:#173f7a}.c7 .page{background:#173f7a}
+.c8{border-color:#e67e22}.c8 .page{background:#e67e22}
+.dot{display:inline-flex;width:34px;height:34px;border-radius:50%;color:#fff;font-weight:bold;align-items:center;justify-content:center}
+.d1{background:#4a90e2}.d2{background:#f5a623}.d3{background:#9b59b6}.d4{background:#38b94a}.d5{background:#e02424}.d6{background:#16a5a5}.d7{background:#173f7a}
+@media(max-width:700px){body{padding:10px}.card{padding:22px 16px;border-radius:24px}h1{font-size:26px}h2{font-size:21px}p,li{font-size:16px}.star{font-size:19px}}
+</style>
+</head>
+<body translate="no" class="notranslate">
+<div class="wrap">
+<div class="langs">
+  <button data-set="en">English</button>
+  <button data-set="fr">Français</button>
+  <button data-set="ar" lang="ar">العربية</button>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div data-lang="en">
+<div class="card hero">
+  <div class="brand">MuslimPhonics</div>
+  <h1>Parents' Guide</h1>
+  <p class="lead">Welcome to the MuslimPhonics adventure! Here is how we guide your child, <b>step by step</b>, from their very first sound all the way to reading.</p>
+  <div class="star">⭐ With only <span class="hl-r">6 sounds</span>, your child can already read <span class="hl-g">more than 40 words</span>!</div>
+</div>
+
+<div class="card">
+  <h2>1. We learn the sounds, not the letter names</h2>
+  <div class="gesture"><img src="gesture-s.png" alt=""><div>
+    <p>To learn to read, your child does not recite the alphabet. First, they discover <b>the sounds that letters make</b>. S is not called “ess”: it hisses <span class="hl-r" style="white-space:nowrap">“ssss”</span>, like a snake!</p>
+    <p>English has <b>42 sounds</b>. Your child discovers them one by one, in <b>7 stages</b> called <i>sets</i>. Each sound comes with <b>its own story</b> and <b>an action to copy</b>: for S, the hand wiggles like a snake while we hiss “ssss”. The action helps the sound stay in memory for good.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <h2>2. Why start with s, a, t, p, i, n?</h2>
+  <p>Because with these six sounds, <b>reading becomes real straight away</b>. As soon as your child knows them, they can blend their first real words:</p>
+  <span class="words">at, an, it, in, sat, sap, sit, sip, sin, tap, tan, tip, tin, pat, pan, pit, pip, pin, nap, nip, nit</span>
+  <p>And by adding an <b>s</b> or putting two consonants together: <b>ants, pants, snap, spin, taps, tips…</b></p>
+  <p class="good">🎉 How proud they feel, reading on their own in the very first weeks!</p>
+</div>
+
+<div class="card">
+  <h2>3. One book, one sound: how each book is built</h2>
+  <p>Each book opens with <b>a story</b> that brings the sound to life and makes your child want to hear it again and again. Then every page has <b>a clear mission</b>:</p>
+  <div class="step c1"><span class="page">🔊 Listen and Repeat</span><p><b>Listening and repeating.</b> Your child says the sound, spots it in words and builds their vocabulary.</p></div>
+  <div class="step c2"><span class="page">✋ Let's Play</span><p><b>Learning with the hands.</b> Your child shapes the letter with play dough. Every child learns in their own way: some remember what they <b>see</b>, others what they <b>hear</b>, others need to <b>move</b>. By using <b>all the senses</b> (sight, hearing, speech, touch and movement), the method adapts to every child. That is why this multisensory approach is especially recommended for neurodivergent children: <span class="hl-g">no child is left behind</span>.</p></div>
+  <div class="step c3"><span class="page">✏️ Let's Write</span><p><b>Tracing.</b> Your child follows the model and writes the letter with the right movement.</p></div>
+  <div class="step c4"><span class="page">👆 Let's Read</span><p><b>Reading at last!</b> Your child places a finger on each dot and says the sound learnt in the story. Book after book, the sounds join together to make words.</p>
+    <p class="link">💡 <b>The secret of English: CVC words.</b> A CVC word is a <b>c</b>onsonant, a <b>v</b>owel, a <b>c</b>onsonant: <i>cat, sun, pig, bed…</i> Each letter sounds exactly as it was learnt; your child simply blends the sounds. Unlike languages full of silent letters, such as French, English has <b>hundreds of CVC words</b> your child can read from the very first sounds. A wonderful springboard into reading! To find out more and practise: <a href="https://ko-fi.com/post/Les-fameuses-CVC-Cards-U7U31JMPQ6" target="_blank" rel="noopener">The famous CVC Cards</a> (article in French).</p></div>
+  <div class="step c5"><span class="page">🎧 Listening Test</span><p><b>Listening and understanding.</b> Your child listens to the instructions in English, then tries to do what is asked. No need to understand everything: sometimes <b>one word is enough</b>. They hear <i>snake</i> and <i>green</i>, and their brain makes the link: they colour the snake green! That is how the ear gets sharper. <b>The voices change on purpose from one story to the next</b>, so your child gets used to different English accents, from the easiest to the hardest.</p></div>
+  <div class="step c8"><span class="page">🎤 Speaking Test</span><p><b>Daring to speak.</b> Your child describes the picture out loud and records themselves. If needed, they can watch the <b>model video</b> for inspiration. And of course, they can repeat these activities <b>as many times as they like</b>.</p>
+    <p class="link">💙 <b>MuslimPhonics is a little family.</b> Children send us their recordings and drawings, and we share them, with their parents' permission, in our album <a href="https://ko-fi.com/album/-Our-Little-MuslimPhonics-Family-V4N828FHNH" target="_blank" rel="noopener">Our Little MuslimPhonics Family</a>. A lovely motivation to keep going!</p></div>
+  <div class="step c6"><span class="page">✂️ Let's Cut and Stick</span><p><b>Keeping the sound close.</b> One letter to stick in a little notebook by the bed, to look through for a few minutes before sleeping, and another on the bedroom wall. The sound settles in… <span class="hl-g">without your child even noticing</span>!</p></div>
+  <div class="step c7"><span class="page">🏁 Reading Challenge</span><p><b>The big challenge.</b> The goal: read the sounds <b>quickly and without hesitating</b>. With each story, your child moves forward on the path, until all <span class="hl-r">42 sounds</span> are conquered!</p></div>
+</div>
+
+<div class="card">
+  <h2>4. The path of the 42 sounds</h2>
+  <p>The sounds are grouped into <b>7 sets</b>. Each set brings new words to read.</p>
+  <table>
+    <tr><th>Set</th><th>Sounds</th></tr>
+    <tr><td><span class="dot d1">1</span></td><td class="s">s, a, t, p, i, n</td></tr>
+    <tr><td><span class="dot d2">2</span></td><td class="s">c/k, e, h, r, m, d</td></tr>
+    <tr><td><span class="dot d3">3</span></td><td class="s">g, o, u, l, f, b</td></tr>
+    <tr><td><span class="dot d4">4</span></td><td class="s">ai, j, oa, ie, ee, or</td></tr>
+    <tr><td><span class="dot d5">5</span></td><td class="s">z, w, ng, v, oo (book), oo (moon)</td></tr>
+    <tr><td><span class="dot d6">6</span></td><td class="s">y, x, ch, sh, th (thin), th (this)</td></tr>
+    <tr><td><span class="dot d7">7</span></td><td class="s">qu, ou, oi, ue, er, ar</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div data-lang="fr">
+<div class="card hero">
+  <div class="brand">MuslimPhonics</div>
+  <h1>Guide des parents</h1>
+  <p class="lead">Bienvenue dans l'aventure MuslimPhonics ! Voici comment nous accompagnons votre enfant, <b>pas à pas</b>, de son tout premier son jusqu'à la lecture.</p>
+  <div class="star">⭐ Avec seulement <span class="hl-r">6 sons</span>, votre enfant peut déjà lire <span class="hl-g">plus de 40 mots</span>&nbsp;!</div>
+</div>
+
+<div class="card">
+  <h2>1. On apprend les sons, pas le nom des lettres</h2>
+  <div class="gesture"><img src="gesture-s.png" alt=""><div style="flex:1">
+    <p>Pour apprendre à lire, votre enfant ne récite pas l'alphabet. Il découvre d'abord <b>les sons que font les lettres</b>. Le S ne s'appelle pas « esse » : il siffle <span class="hl-r" style="white-space:nowrap">«&nbsp;ssss&nbsp;»</span>, comme un serpent !</p>
+    <p>L'anglais compte <b>42 sons</b>. Votre enfant les découvre un par un, en <b>7 étapes</b> appelées <i>sets</i>. Chaque son arrive avec <b>sa propre histoire</b> et <b>un geste à mimer</b> : pour le S, la main ondule comme un serpent pendant qu'on siffle « ssss ». Le geste aide le son à s'ancrer durablement dans la mémoire.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <h2>✨ 2. Pourquoi commencer par s, a, t, p, i, n ?</h2>
+  <p>Parce qu'avec ces six sons, <b>la lecture devient réelle tout de suite</b>. Dès que votre enfant les connaît, il peut assembler ses premiers vrais mots :</p>
+  <span class="words">at, an, it, in, sat, sap, sit, sip, sin, tap, tan, tip, tin, pat, pan, pit, pip, pin, nap, nip, nit</span>
+  <p>Et en ajoutant un <b>s</b> ou en accolant deux consonnes : <b>ants, pants, snap, spin, taps, tips…</b></p>
+  <p class="good">🎉 Quelle fierté de lire tout seul, dès les premières semaines !</p>
+</div>
+
+<div class="card">
+  <h2>📖 3. Un livre, un son : comment chaque livre est construit</h2>
+  <p>Chaque livre s'ouvre sur <b>une histoire</b> qui fait vivre le son et donne envie à l'enfant de l'entendre encore et encore. Ensuite, chaque page a <b>une mission bien précise</b> :</p>
+  <div class="step c1"><span class="page">🔊 Listen and Repeat</span><p><b>Écouter et répéter.</b> Votre enfant prononce le son, le repère dans des mots et enrichit son vocabulaire.</p></div>
+  <div class="step c2"><span class="page">✋ Let's Play</span><p><b>Apprendre avec les mains.</b> Il modèle la lettre en pâte à modeler. Chaque enfant apprend à sa façon : certains retiennent ce qu'ils <b>voient</b>, d'autres ce qu'ils <b>entendent</b>, d'autres encore ont besoin de <b>bouger</b>. En sollicitant <b>tous les sens</b> (la vue, l'ouïe, la parole, le toucher et le mouvement), la méthode s'adapte à chaque enfant. C'est pour cela que cette approche multisensorielle est particulièrement recommandée pour les enfants neuroatypiques : <span class="hl-g">aucun enfant n'est laissé de côté</span>.</p></div>
+  <div class="step c3"><span class="page">✏️ Let's Write</span><p><b>Tracer.</b> Il suit le modèle et écrit la lettre avec le bon geste.</p></div>
+  <div class="step c4"><span class="page">👆 Let's Read</span><p><b>Lire, enfin !</b> Il pose son doigt sur chaque point et prononce le son appris dans l'histoire. Au fil des livres, les sons se rejoignent et forment des mots.</p>
+    <p class="link">💡 <b>Le secret de l'anglais : les mots CVC.</b> Un mot CVC, c'est une <b>c</b>onsonne, une <b>v</b>oyelle, une <b>c</b>onsonne : <i>cat, sun, pig, bed…</i> Chaque lettre se prononce exactement comme on l'a apprise, il suffit d'enchaîner les sons. Contrairement au français, où les lettres muettes et les sons composés sont partout, l'anglais compte <b>des centaines de mots CVC</b> que l'enfant peut lire dès ses premiers sons. C'est un formidable tremplin vers la lecture ! Pour en savoir plus et vous entraîner : <a href="https://ko-fi.com/post/Les-fameuses-CVC-Cards-U7U31JMPQ6" target="_blank" rel="noopener">Les fameuses CVC Cards</a>.</p></div>
+  <div class="step c5"><span class="page">🎧 Listening Test</span><p><b>Écouter et comprendre.</b> Votre enfant écoute la consigne en anglais, puis essaie de faire ce qu'on lui demande. Pas besoin de tout comprendre : parfois, <b>un seul mot suffit</b>. Il entend <i>snake</i> et <i>green</i>, et son cerveau fait le lien : il colorie le serpent en vert ! C'est ainsi que l'oreille s'affine. <b>Les voix changent volontairement d'une histoire à l'autre</b> pour que votre enfant s'habitue aux différents accents anglais, des plus faciles aux plus difficiles.</p></div>
+  <div class="step c8"><span class="page">🎤 Speaking Test</span><p><b>Oser parler.</b> Votre enfant décrit l'image à voix haute et s'enregistre. S'il en a besoin, il peut regarder la <b>vidéo modèle</b> pour s'inspirer. Et bien sûr, il peut recommencer ces activités <b>autant de fois qu'il le souhaite</b>.</p>
+    <p class="link">💙 <b>MuslimPhonics, c'est une petite famille.</b> Les enfants nous envoient leurs audios et leurs dessins, et nous les publions, avec l'accord des parents, dans notre album <a href="https://ko-fi.com/album/-Our-Little-MuslimPhonics-Family-V4N828FHNH" target="_blank" rel="noopener">Our Little MuslimPhonics Family</a>. Une belle motivation pour progresser !</p></div>
+  <div class="step c6"><span class="page">✂️ Let's Cut and Stick</span><p><b>Garder le son près de lui.</b> Une lettre à coller dans un petit cahier près du lit, à feuilleter quelques minutes avant de dormir, et une autre au mur de sa chambre. Le son s'installe… <span class="hl-g">sans même qu'il s'en rende compte</span>&nbsp;!</p></div>
+  <div class="step c7"><span class="page">🏁 Reading Challenge</span><p><b>Le grand défi.</b> Le but : lire les sons <b>vite et sans hésiter</b>. À chaque histoire, votre enfant avance sur le chemin, jusqu'à conquérir les <span class="hl-r">42 sons</span>&nbsp;!</p></div>
+</div>
+
+<div class="card">
+  <h2>🗺️ 4. Le chemin des 42 sons</h2>
+  <p>Les sons sont regroupés en <b>7 sets</b>. Chaque set apporte de nouveaux mots à lire.</p>
+  <table>
+    <tr><th>Set</th><th>Sons</th></tr>
+    <tr><td><span class="dot d1">1</span></td><td class="s">s, a, t, p, i, n</td></tr>
+    <tr><td><span class="dot d2">2</span></td><td class="s">c/k, e, h, r, m, d</td></tr>
+    <tr><td><span class="dot d3">3</span></td><td class="s">g, o, u, l, f, b</td></tr>
+    <tr><td><span class="dot d4">4</span></td><td class="s">ai, j, oa, ie, ee, or</td></tr>
+    <tr><td><span class="dot d5">5</span></td><td class="s">z, w, ng, v, oo (book), oo (moon)</td></tr>
+    <tr><td><span class="dot d6">6</span></td><td class="s">y, x, ch, sh, th (thin), th (this)</td></tr>
+    <tr><td><span class="dot d7">7</span></td><td class="s">qu, ou, oi, ue, er, ar</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- ===================== العربية ===================== -->
+<div data-lang="ar" lang="ar">
+<div class="card hero">
+  <div class="brand">MuslimPhonics</div>
+  <h1 class="tk">دَلِيلُ الْوَالِدَيْنِ</h1>
+  <p class="lead tk">مَرْحَبًا بِكُمْ فِي مُغَامَرَةِ MuslimPhonics! إِلَيْكُمْ كَيْفَ نُرَافِقُ طِفْلَكُمْ، <b>خُطْوَةً خُطْوَةً</b>، مِنْ أَوَّلِ صَوْتٍ يَتَعَلَّمُهُ حَتَّى يَقْرَأَ.</p>
+  <div class="star tk">⭐ بِـ<span class="hl-r">سِتَّةِ أَصْوَاتٍ</span> فَقَطْ، يَسْتَطِيعُ طِفْلُكُمْ أَنْ يَقْرَأَ <span class="hl-g">أَكْثَرَ مِنْ أَرْبَعِينَ كَلِمَةً</span>!</div>
+</div>
+
+<div class="card">
+  <h2 class="tk">1. نَتَعَلَّمُ الْأَصْوَاتَ، لَا أَسْمَاءَ الْحُرُوفِ</h2>
+  <div class="gesture"><img src="gesture-s.png" alt=""><div>
+    <p class="tk">لِيَتَعَلَّمَ طِفْلُكُمُ الْقِرَاءَةَ، لَا يَحْفَظُ الْأَبْجَدِيَّةَ أَوَّلًا، بَلْ يَكْتَشِفُ <b>الْأَصْوَاتَ الَّتِي تُصْدِرُهَا الْحُرُوفُ</b>. حَرْفُ S لَا نُسَمِّيهِ «إِسْ»، بَلْ يَصْفِرُ <span class="hl-r">«سْسْسْ»</span> مِثْلَ الثُّعْبَانِ!</p>
+    <p class="tk">فِي اللُّغَةِ الْإِنْجِلِيزِيَّةِ <b>اثْنَانِ وَأَرْبَعُونَ صَوْتًا</b>، يَكْتَشِفُهَا طِفْلُكُمْ وَاحِدًا تِلْوَ الْآخَرِ، عَلَى <b>سَبْعِ مَرَاحِلَ</b> تُسَمَّى <i>sets</i>. لِكُلِّ صَوْتٍ <b>قِصَّتُهُ الْخَاصَّةُ</b> وَ<b>حَرَكَةٌ يُقَلِّدُهَا</b>: لِحَرْفِ S تَتَمَوَّجُ الْيَدُ مِثْلَ الثُّعْبَانِ وَنَحْنُ نَصْفِرُ «سْسْسْ». وَتُسَاعِدُ الْحَرَكَةُ عَلَى تَثْبِيتِ الصَّوْتِ فِي الذَّاكِرَةِ.</p>
+  </div></div>
+</div>
+
+<div class="card">
+  <h2 class="tk">2. لِمَاذَا نَبْدَأُ بِـ s, a, t, p, i, n؟</h2>
+  <p class="tk">لِأَنَّ <b>الْقِرَاءَةَ تُصْبِحُ حَقِيقِيَّةً فَوْرًا</b> بِهَذِهِ الْأَصْوَاتِ السِّتَّةِ. فَبِمُجَرَّدِ أَنْ يَعْرِفَهَا طِفْلُكُمْ، يَسْتَطِيعُ أَنْ يُرَكِّبَ أُولَى كَلِمَاتِهِ الْحَقِيقِيَّةِ:</p>
+  <span class="words">at, an, it, in, sat, sap, sit, sip, sin, tap, tan, tip, tin, pat, pan, pit, pip, pin, nap, nip, nit</span>
+  <p class="tk">وَبِإِضَافَةِ حَرْفِ <b>s</b> أَوْ بِجَمْعِ حَرْفَيْنِ سَاكِنَيْنِ: <b>ants, pants, snap, spin, taps, tips…</b></p>
+  <p class="good tk">🎉 يَا لَهُ مِنْ فَخْرٍ أَنْ يَقْرَأَ وَحْدَهُ مُنْذُ الْأَسَابِيعِ الْأُولَى!</p>
+</div>
+
+<div class="card">
+  <h2 class="tk">3. كِتَابٌ وَاحِدٌ لِصَوْتٍ وَاحِدٍ: كَيْفَ بُنِيَ كُلُّ كِتَابٍ؟</h2>
+  <p class="tk">يَبْدَأُ كُلُّ كِتَابٍ بِـ<b>قِصَّةٍ</b> تُحْيِي الصَّوْتَ وَتَجْعَلُ الطِّفْلَ يَرْغَبُ فِي سَمَاعِهِ مَرَّةً بَعْدَ مَرَّةٍ. ثُمَّ لِكُلِّ صَفْحَةٍ <b>مُهِمَّةٌ وَاضِحَةٌ</b>:</p>
+  <div class="step c1"><span class="page">🔊 Listen and Repeat</span><p class="tk"><b>الِاسْتِمَاعُ وَالتَّكْرَارُ.</b> يَنْطِقُ طِفْلُكُمُ الصَّوْتَ، وَيَتَعَرَّفُ عَلَيْهِ فِي الْكَلِمَاتِ، وَيُثْرِي مُفْرَدَاتِهِ.</p></div>
+  <div class="step c2"><span class="page">✋ Let's Play</span><p class="tk"><b>التَّعَلُّمُ بِالْيَدَيْنِ.</b> يُشَكِّلُ الْحَرْفَ بِالْعَجِينِ. فَكُلُّ طِفْلٍ يَتَعَلَّمُ بِطَرِيقَتِهِ: بَعْضُهُمْ يَتَذَكَّرُ مَا <b>يَرَاهُ</b>، وَبَعْضُهُمْ مَا <b>يَسْمَعُهُ</b>، وَبَعْضُهُمْ يَحْتَاجُ إِلَى <b>الْحَرَكَةِ</b>. وَبِاسْتِعْمَالِ <b>كُلِّ الْحَوَاسِّ</b> (النَّظَرِ وَالسَّمْعِ وَالنُّطْقِ وَاللَّمْسِ وَالْحَرَكَةِ) تَتَكَيَّفُ الطَّرِيقَةُ مَعَ كُلِّ طِفْلٍ. لِذَلِكَ يُنْصَحُ بِهَذَا الْأُسْلُوبِ الْمُتَعَدِّدِ الْحَوَاسِّ خَاصَّةً لِلْأَطْفَالِ ذَوِي التَّنَوُّعِ الْعَصَبِيِّ: <span class="hl-g">لَا يُتْرَكُ أَيُّ طِفْلٍ خَلْفَ الْآخَرِينَ</span>.</p></div>
+  <div class="step c3"><span class="page">✏️ Let's Write</span><p class="tk"><b>الْكِتَابَةُ.</b> يَتْبَعُ النَّمُوذَجَ وَيَكْتُبُ الْحَرْفَ بِالْحَرَكَةِ الصَّحِيحَةِ.</p></div>
+  <div class="step c4"><span class="page">👆 Let's Read</span><p class="tk"><b>وَأَخِيرًا، الْقِرَاءَةُ!</b> يَضَعُ إِصْبَعَهُ عَلَى كُلِّ نُقْطَةٍ وَيَنْطِقُ الصَّوْتَ الَّذِي تَعَلَّمَهُ فِي الْقِصَّةِ. وَمَعَ تَوَالِي الْكُتُبِ، تَجْتَمِعُ الْأَصْوَاتُ وَتُكَوِّنُ كَلِمَاتٍ.</p>
+    <div class="link"><p class="tk">💡 <b>سِرُّ اللُّغَةِ الْإِنْجِلِيزِيَّةِ: كَلِمَاتُ CVC.</b> كَلِمَةُ CVC هِيَ حَرْفٌ سَاكِنٌ، ثُمَّ حَرْفُ عِلَّةٍ، ثُمَّ حَرْفٌ سَاكِنٌ: <i>cat, sun, pig, bed…</i> يُنْطَقُ كُلُّ حَرْفٍ تَمَامًا كَمَا تَعَلَّمَهُ الطِّفْلُ، وَيَكْفِي أَنْ يَصِلَ الْأَصْوَاتَ بَعْضَهَا بِبَعْضٍ. وَفِي اللُّغَةِ الْإِنْجِلِيزِيَّةِ <b>مِئَاتُ الْكَلِمَاتِ</b> مِنْ هَذَا النَّوْعِ، يَسْتَطِيعُ الطِّفْلُ قِرَاءَتَهَا مُنْذُ أَصْوَاتِهِ الْأُولَى. إِنَّهَا انْطِلَاقَةٌ رَائِعَةٌ نَحْوَ الْقِرَاءَةِ! لِلْمَزِيدِ وَلِلتَّدَرُّبِ: <a href="https://ko-fi.com/post/Les-fameuses-CVC-Cards-U7U31JMPQ6" target="_blank" rel="noopener">CVC Cards</a> (مَقَالٌ بِالْفَرَنْسِيَّةِ).</p></div></div>
+  <div class="step c5"><span class="page">🎧 Listening Test</span><p class="tk"><b>الِاسْتِمَاعُ وَالْفَهْمُ.</b> يَسْتَمِعُ طِفْلُكُمْ إِلَى التَّعْلِيمَاتِ بِالْإِنْجِلِيزِيَّةِ، ثُمَّ يُحَاوِلُ أَنْ يَفْعَلَ مَا يُطْلَبُ مِنْهُ. لَا يَحْتَاجُ إِلَى فَهْمِ كُلِّ شَيْءٍ: أَحْيَانًا <b>تَكْفِي كَلِمَةٌ وَاحِدَةٌ</b>. يَسْمَعُ <i>snake</i> وَ<i>green</i>، فَيَرْبِطُ دِمَاغُهُ بَيْنَهُمَا، فَيُلَوِّنُ الثُّعْبَانَ بِالْأَخْضَرِ! هَكَذَا تَتَدَرَّبُ الْأُذُنُ. <b>تَتَغَيَّرُ الْأَصْوَاتُ عَمْدًا مِنْ قِصَّةٍ إِلَى أُخْرَى</b>، لِيَعْتَادَ طِفْلُكُمْ عَلَى لَهَجَاتٍ إِنْجِلِيزِيَّةٍ مُخْتَلِفَةٍ، مِنَ الْأَسْهَلِ إِلَى الْأَصْعَبِ.</p></div>
+  <div class="step c8"><span class="page">🎤 Speaking Test</span><p class="tk"><b>الْجُرْأَةُ عَلَى الْكَلَامِ.</b> يَصِفُ طِفْلُكُمُ الصُّورَةَ بِصَوْتٍ عَالٍ وَيُسَجِّلُ صَوْتَهُ. وَإِنِ احْتَاجَ، يُمْكِنُهُ أَنْ يُشَاهِدَ <b>الْفِيدْيُو النَّمُوذَجِيَّ</b> لِيَسْتَلْهِمَ مِنْهُ. وَطَبْعًا، يُمْكِنُهُ أَنْ يُعِيدَ هَذِهِ الْأَنْشِطَةَ <b>كُلَّمَا أَرَادَ</b>.</p>
+    <div class="link"><p class="tk">💙 <b>MuslimPhonics عَائِلَةٌ صَغِيرَةٌ.</b> يُرْسِلُ إِلَيْنَا الْأَطْفَالُ تَسْجِيلَاتِهِمْ وَرُسُومَاتِهِمْ، فَنَنْشُرُهَا، بِمُوَافَقَةِ الْوَالِدَيْنِ، فِي أَلْبُومِنَا <a href="https://ko-fi.com/album/-Our-Little-MuslimPhonics-Family-V4N828FHNH" target="_blank" rel="noopener">Our Little MuslimPhonics Family</a>. إِنَّهُ حَافِزٌ جَمِيلٌ لِلتَّقَدُّمِ!</p></div></div>
+  <div class="step c6"><span class="page">✂️ Let's Cut and Stick</span><p class="tk"><b>إِبْقَاءُ الصَّوْتِ قَرِيبًا مِنْهُ.</b> حَرْفٌ يُلْصِقُهُ فِي دَفْتَرٍ صَغِيرٍ قُرْبَ سَرِيرِهِ، يَتَصَفَّحُهُ دَقَائِقَ قَلِيلَةً قَبْلَ النَّوْمِ، وَآخَرُ عَلَى جِدَارِ غُرْفَتِهِ. فَيَسْتَقِرُّ الصَّوْتُ فِي ذَاكِرَتِهِ… <span class="hl-g">دُونَ أَنْ يَشْعُرَ</span>!</p></div>
+  <div class="step c7"><span class="page">🏁 Reading Challenge</span><p class="tk"><b>التَّحَدِّي الْكَبِيرُ.</b> الْهَدَفُ: أَنْ يَقْرَأَ الْأَصْوَاتَ <b>بِسُرْعَةٍ وَدُونَ تَرَدُّدٍ</b>. مَعَ كُلِّ قِصَّةٍ يَتَقَدَّمُ طِفْلُكُمْ فِي الطَّرِيقِ، حَتَّى يُتْقِنَ <span class="hl-r">الْأَصْوَاتَ الِاثْنَيْنِ وَالْأَرْبَعِينَ</span>!</p></div>
+</div>
+
+<div class="card">
+  <h2 class="tk">4. طَرِيقُ الْأَصْوَاتِ الِاثْنَيْنِ وَالْأَرْبَعِينَ</h2>
+  <p class="tk">جُمِعَتِ الْأَصْوَاتُ فِي <b>سَبْعِ مَجْمُوعَاتٍ</b>، وَكُلُّ مَجْمُوعَةٍ تَأْتِي بِكَلِمَاتٍ جَدِيدَةٍ لِلْقِرَاءَةِ.</p>
+  <table>
+    <tr><th class="tk">الْمَجْمُوعَةُ</th><th class="tk">الْأَصْوَاتُ</th></tr>
+    <tr><td><span class="dot d1">1</span></td><td class="s">s, a, t, p, i, n</td></tr>
+    <tr><td><span class="dot d2">2</span></td><td class="s">c/k, e, h, r, m, d</td></tr>
+    <tr><td><span class="dot d3">3</span></td><td class="s">g, o, u, l, f, b</td></tr>
+    <tr><td><span class="dot d4">4</span></td><td class="s">ai, j, oa, ie, ee, or</td></tr>
+    <tr><td><span class="dot d5">5</span></td><td class="s">z, w, ng, v, oo (book), oo (moon)</td></tr>
+    <tr><td><span class="dot d6">6</span></td><td class="s">y, x, ch, sh, th (thin), th (this)</td></tr>
+    <tr><td><span class="dot d7">7</span></td><td class="s">qu, ou, oi, ue, er, ar</td></tr>
+  </table>
+</div>
+</div>
+
+</div>
+<script>
+/* red tashkeel overlay on every .tk element */
+document.querySelectorAll(".tk").forEach(function(el){
+  var html = el.innerHTML;
+  el.innerHTML = '<span class="tkw"><span class="m">' + html + '</span><span class="l" aria-hidden="true">' + html.replace(/[ً-ْٰ]/g, "") + '</span></span>';
+});
+/* language: ?lang=xx, then saved choice, then browser language */
+function pick(){
+  var q = (location.search.match(/lang=(en|fr|ar)/) || [])[1];
+  if(q) return q;
+  try { var s = localStorage.getItem("mp_lang"); if(s) return s; } catch(e){}
+  var n = (navigator.language || "en").slice(0,2);
+  return (n === "fr" || n === "ar") ? n : "en";
+}
+function setLang(l){
+  document.documentElement.setAttribute("data-l", l);
+  document.documentElement.lang = l;
+  document.querySelectorAll(".langs button").forEach(function(b){ b.classList.toggle("on", b.dataset.set === l); });
+  try { localStorage.setItem("mp_lang", l); } catch(e){}
+}
+document.querySelectorAll(".langs button").forEach(function(b){ b.onclick = function(){ setLang(b.dataset.set); }; });
+setLang(pick());
+</script>
+</body>
+</html>
